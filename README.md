@@ -26,3 +26,4 @@
 - php artisan make:model Car -m
 - php artisan make:model Rent -m
 - php artisan migrate
+- CREATE EXTENSION IF NOT EXISTS "uuid-ossp"; (in elephant sql)

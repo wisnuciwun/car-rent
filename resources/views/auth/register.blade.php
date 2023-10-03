@@ -10,9 +10,23 @@
                     <label for="name">Nama</label>
                     <div class="w-100">
                         <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
-                            name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                            name="name" value="{{ old('name') }}" required autofocus>
 
                         @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="address">Alamat</label>
+                    <div>
+                        <input id="address" type="text" class="form-control  @error('address') is-invalid @enderror"
+                            {{-- class="form-control @error('email') is-invalid @enderror" --}} name="address" value="{{ old('address') }}" required>
+
+                        @error('address')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -24,7 +38,7 @@
                     <label for="email">Alamat email</label>
                     <div>
                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                            name="email" value="{{ old('email') }}" required autocomplete="email">
+                            name="email" value="{{ old('email') }}" required>
 
                         @error('email')
                             <span class="invalid-feedback" role="alert">
@@ -35,32 +49,32 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="email">Nomor Telepon</label>
+                    <label for="phone">Nomor Telepon</label>
 
                     <div>
-                        <input id="phone" type="number" class="form-control" {{-- class="form-control @error('email') is-invalid @enderror" --}} name="phone"
-                            value="{{ old('phone') }}" required autocomplete="phone">
+                        <input id="phone" type="text" class="form-control  @error('phone') is-invalid @enderror"
+                            {{-- class="form-control @error('email') is-invalid @enderror" --}} name="phone" value="{{ old('phone') }}" required>
 
-                        {{-- @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror --}}
+                        @error('phone')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                 </div>
 
                 <div class="mb-3">
-                    <label for="email">Nomor SIM</label>
+                    <label for="license">Nomor SIM</label>
 
                     <div>
-                        <input id="license" type="number" class="form-control" {{-- class="form-control @error('email') is-invalid @enderror" --}} name="phone"
-                            value="{{ old('license') }}" required autocomplete="license">
+                        <input id="license" type="text" class="form-control  @error('license') is-invalid @enderror"
+                            {{-- class="form-control @error('email') is-invalid @enderror" --}} name="license" value="{{ old('license') }}" required>
 
-                        {{-- @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror --}}
+                        @error('license')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                 </div>
 

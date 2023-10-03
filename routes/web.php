@@ -17,10 +17,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/detail', function () {
+    return view('car.detail');
+});
+
+Route::get('/addnew', function () {
+    return view('car.addnew');
+});
+
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('index');

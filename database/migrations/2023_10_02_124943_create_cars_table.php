@@ -11,8 +11,9 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('cars', function (Blueprint $table) {
-            $table->uuid('id');
-            $table->uuid('id_owner');
+            $table->id();
+            $table->bigInteger('id_owner');
+            $table->text('description');
             $table->string('brand');
             $table->string('model');
             $table->string('police_num');

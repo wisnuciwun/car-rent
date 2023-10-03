@@ -10,13 +10,10 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('rents', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('id_car');
-            $table->bigInteger('id_tenant');
-            $table->date('rental_deadline');
-            $table->date('rental_start');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->integer('phone');
+            $table->integer('license');
+            $table->string('address');
         });
     }
 
@@ -25,6 +22,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('rents');
+        //
     }
 };
