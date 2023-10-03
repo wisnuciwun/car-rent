@@ -46,4 +46,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function carOwner($id_owner)
+    {
+        return User::find($id_owner);
+    }
 }

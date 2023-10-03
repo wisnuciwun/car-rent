@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for rentalpedia on 2023-10-02T22:23:49+07:00
+# fly.toml app configuration file generated for rentalpedia on 2023-10-03T11:40:52+07:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -14,17 +14,17 @@ console_command = "php /var/www/html/artisan tinker"
 
 [env]
   APP_ENV = "production"
+  DB_CONNECTION = "pgsql"
+  DB_DATABASE = "jjawuptn"
+  DB_HOST = "arjuna.db.elephantsql.com"
+  DB_PASSWORD = "G6E-2chMl4_55NTk3q4-xBUZkKIx_GpQ"
+  DB_PORT = "5432"
+  DB_USERNAME = "jjawuptn"
   LOG_CHANNEL = "stderr"
   LOG_LEVEL = "info"
   LOG_STDERR_FORMATTER = "Monolog\\Formatter\\JsonFormatter"
   SESSION_DRIVER = "cookie"
   SESSION_SECURE_COOKIE = "true"
-  DB_CONNECTION = ""
-  DB_DATABASE = ""
-  DB_HOST = ""
-  DB_PASSWORD = ""
-  DB_PORT = ""
-  DB_USERNAME = ""
 
 [http_service]
   internal_port = 8080

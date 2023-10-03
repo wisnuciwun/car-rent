@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +20,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        View::composer('*', function ($view) {
+            // $car_type_list = 'This is a universal variable';
+            $car_type_list = array('Sedan', 'Hatchback', 'MPV', 'Minivan', 'Microbus', 'Bus');
+            $car_type_list_dropdown = (object) $car_type_list;
+
+            $view
+                ->with('car_type_list', $car_type_list)
+                ->with('car_type_list_dropdown', $car_type_list_dropdown);
+        });
     }
 }

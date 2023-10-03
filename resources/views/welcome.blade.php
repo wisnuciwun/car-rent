@@ -10,12 +10,24 @@
                     <button class="btn btn-outline-secondary" type="button">Cari</button>
                 </div>
             </div>
+            {{-- <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                                 document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </div> --}}
+
             <div class="dropdown">
-                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown" aria-expanded="false">
                     Jenis Kendaraan
                 </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                     <a class="dropdown-item" href="#">Sedan</a>
                     <a class="dropdown-item" href="#">Hatchback</a>
                     <a class="dropdown-item" href="#">MPV</a>
@@ -26,7 +38,7 @@
             </div>
             <div class="dropdown">
                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Ketersediaan
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -36,7 +48,7 @@
             </div>
             <div class="dropdown">
                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Tahun
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -46,44 +58,54 @@
             </div>
         </div>
         <div>
-            <div class="card pointer" onclick="window.location.replace('/detail')" style="width: 25rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Avanza 2022</h5>
-                    <div class="d-flex align-items-center gap-2 mb-1">
-                        <img src="https://i.ibb.co/SwhPvJC/avatar.png" style="width: 15px; height: 15px" alt="">
-                        <p class="card-text">Hartono</p>
-                    </div>
-                    <div class="position-relative w-100">
-                        <img class="w-100"
-                            src="https://img.philtoyota.com/2023/03/21/059B8x1O/avanzas-engine-and-fuel-consumption-c905.jpg"
-                            alt="img-car">
-                        <div style="bottom: 8px; right: 8px" class="badge badge-pill bg-success position-absolute">Tersedia
+            @for ($i = 0; $i < count($data); $i++)
+                <div class="card" style="width: 25rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $data[$i]->name }}</h5>
+                        <div class="d-flex align-items-center gap-2 mb-1">
+                            <img src="https://i.ibb.co/SwhPvJC/avatar.png" style="width: 15px; height: 15px" alt="">
+                            <p class="card-text">{{ $owner[$i]->name }}</p>
                         </div>
-                    </div>
-                    <div class="row mt-2 mb-2">
-                        <div class="col-md-5">Merek</div>
-                        <div class="col-md-1">:</div>
-                        <div class="col-md-5">Daihatsu</div>
-                        <div class="col-md-5">Jenis</div>
-                        <div class="col-md-1">:</div>
-                        <div class="col-md-5">Sedan</div>
-                        <div class="col-md-12"></div>
-                        <div class="col-md-5">Plat nomor</div>
-                        <div class="col-md-1">:</div>
-                        <div class="col-md-5">D 1244 VCV</div>
-                        <div class="col-md-12"></div>
-                        <div class="col-md-5">Harga sewa</div>
-                        <div class="col-md-1">:</div>
-                        <div class="col-md-5">Rp. 125.000 / hari</div>
-                        <div class="col-md-12"></div>
-                        <div class="col-md-5 mt-3">Deskripsi :</div>
-                        <div class="col-md-12">
-                            Mobil mulus
+                        <div class="position-relative w-100">
+                            <img class="w-100"
+                                src="https://img.philtoyota.com/2023/03/21/059B8x1O/avanzas-engine-and-fuel-consumption-c905.jpg"
+                                alt="img-car">
+                            @if ($data[$i]->availability)
+                                <div style="bottom: 8px; right: 8px" class="badge badge-pill bg-success position-absolute">
+                                    Tersedia
+                                </div>
+                            @else
+                                <div style="bottom: 8px; right: 8px" class="badge badge-pill bg-danger position-absolute">
+                                    Sedang disewa
+                                </div>
+                            @endif
                         </div>
+                        <div class="row mt-2 mb-2">
+                            <div class="col-md-5">Merek</div>
+                            <div class="col-md-1">:</div>
+                            <div class="col-md-5">{{ $data[$i]->brand }}</div>
+                            <div class="col-md-5">Jenis</div>
+                            <div class="col-md-1">:</div>
+                            <div class="col-md-5">{{ $data[$i]->model }}</div>
+                            <div class="col-md-12"></div>
+                            <div class="col-md-5">Plat nomor</div>
+                            <div class="col-md-1">:</div>
+                            <div class="col-md-5">{{ $data[$i]->police_num }}</div>
+                            <div class="col-md-12"></div>
+                            <div class="col-md-5">Harga sewa</div>
+                            <div class="col-md-1">:</div>
+                            <div class="col-md-5">{{ $data[$i]->fee }}</div>
+                            <div class="col-md-12"></div>
+                            <div class="col-md-5 mt-3">Deskripsi :</div>
+                            <div class="col-md-12">
+                                {{ $data[$i]->description }}
+                            </div>
+                        </div>
+                        <a href='/detail/{{ $data[$i]->brand }}-{{ str_replace(' ', '-', $data[$i]->name) }}-{{ $data[$i]->id }}'
+                            class="btn btn-primary w-100">Lihat</a>
                     </div>
-                    <a href="#" class="btn btn-primary w-100">Sewa</a>
                 </div>
-            </div>
+            @endfor
         </div>
     </div>
 @endsection

@@ -1,40 +1,34 @@
 @extends('layouts.app')
 
 @section('content')
-    {{-- $table->bigInteger('id_owner');
-$table->text('description');
-$table->string('brand');
-$table->string('model');
-$table->string('police_num');
-$table->integer('fee');
-$table->boolean('availability');
-$table->timestamps(); --}}
     <div class="container" style="padding-top: 100px">
+        {!! Form::open(['route' => 'cars.store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
         <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Nama</label>
-            <br>
-            <input type="text" placeholder="Nama mobil">
+            {{ Form::label('name', 'Nama Mobil') }}
+            {{ Form::text('name', '', ['class' => 'form-control mb-2', 'placeholder' => 'Tulis nama mobil anda']) }}
         </div>
         <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Brand</label>
-            <br>
-            <input type="text" placeholder="Brand mobil">
+            {{ Form::label('brand', 'Merek Mobil') }}
+            {{ Form::text('brand', '', ['class' => 'form-control mb-2', 'placeholder' => 'Tulis brand mobil anda']) }}
         </div>
         <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Plat Nomor</label>
-            <br>
-            <input type="text" placeholder="Plat nomor">
+            {{ Form::label('model', 'Model / Tipe') }}
+            {!! Form::select('model', $car_type_list_dropdown, null, ['class' => 'form-control']) !!}
+            {{-- {{ Form::dropdown('brand', '', ['class' => 'form-control mb-2', 'placeholder' => 'Tulis brand mobil anda']) }} --}}
         </div>
         <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Biaya Sewa</label>
-            <br>
-            <input type="text" placeholder="Biaya sewa">
+            {{ Form::label('police_num', 'Plat Nomor') }}
+            {{ Form::text('police_num', '', ['class' => 'form-control mb-2', 'placeholder' => 'Berapa plat nomor mobil anda?']) }}
         </div>
         <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Foto mobil</label>
-            <br>
-            <input type="text" placeholder="Biaya sewa">
+            {{ Form::label('fee', 'Biaya Sewa Perbulan') }}
+            {{ Form::text('fee', '', ['class' => 'form-control mb-2', 'placeholder' => 'Berapa biaya sewa mobil anda?']) }}
         </div>
-        <button class="btn btn-primary">Simpan</button>
+        <div class="mb-3">
+            {{ Form::label('description', 'Deskripsi') }}
+            {{ Form::textarea('description', '', ['class' => 'form-control mb-2', 'placeholder' => 'Berapa biaya sewa mobil anda?']) }}
+        </div>
+        {{ Form::submit('Simpan', ['class' => 'btn btn-primary mt-4']) }}
+        {!! Form::close() !!}
     </div>
 @endsection
