@@ -34,7 +34,7 @@
                         <div class="col-md-12"></div>
                         <div class="col-md-5 mt-3">Deskripsi :</div>
                         <div class="col-md-12">
-                            Mobil mulus
+                            {{ $car_detail->description }}
                         </div>
                     </div>
                     <div class="col-6">
