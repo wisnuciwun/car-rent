@@ -83,6 +83,17 @@ class CarsController extends Controller
         return view('car.detail')->with('car_detail', $car_detail);
     }
 
+    public function showBySearch(Request $request)
+    {
+        $data = Car::join('users', 'cars.id_owner', '=', 'users.id')
+            ->select('users.name as owner', 'cars.*')
+            ->where('cars.name', 'ilike', '%' . $request->input('keyword') . '%')
+            // 'column_name', 'like', '%' . $keyword . '%'
+            ->get();
+
+        return view('welcome', compact('data'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      */

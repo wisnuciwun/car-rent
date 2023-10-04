@@ -16,19 +16,19 @@
                         <h3 class="col-md-12">{{ $car_detail->name }}</h3>
                     </div>
                     <div class="col-6">
-                        <div class="col-md-2">Merek</div>
+                        <div class="col-md-3">Merek</div>
                         <div class="col-md-1">:</div>
                         <div class="col-md-5">{{ $car_detail->brand }}</div>
                         <div class="col-md-12"></div>
-                        <div class="col-md-2">Jenis</div>
+                        <div class="col-md-3">Jenis</div>
                         <div class="col-md-1">:</div>
                         <div class="col-md-5">{{ $car_detail->model }}</div>
                         <div class="col-md-12"></div>
-                        <div class="col-md-2">Plat nomor</div>
+                        <div class="col-md-3">Plat nomor</div>
                         <div class="col-md-1">:</div>
                         <div class="col-md-5">{{ $car_detail->police_num }}</div>
                         <div class="col-md-12"></div>
-                        <div class="col-md-2">Harga sewa</div>
+                        <div class="col-md-3">Harga sewa</div>
                         <div class="col-md-1">:</div>
                         <div class="col-md-5">Rp. {{ number_format($car_detail->fee) }} / hari</div>
                         <div class="col-md-12"></div>

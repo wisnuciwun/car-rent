@@ -28,6 +28,8 @@ Route::post('/return/{id}', [RentalController::class, 'updateRentData'])->name('
 
 Route::get('/detail/{slug}', [CarsController::class, 'show']);
 
+Route::get('/search', [CarsController::class, 'showBySearch'])->name('showBySearch');
+
 Route::get('/addnew', function () {
     return view('car.addnew');
 });

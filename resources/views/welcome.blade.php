@@ -3,24 +3,16 @@
 @section('content')
     <div class="container" style="padding-top: 100px">
         <div class="d-flex gap-2">
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Tulis nama kendaraan..."
-                    aria-label="Recipient's username" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button">Cari</button>
+            <form class="w-100" method="GET" action="{{ route('showBySearch') }}">
+                {{-- @csrf --}}
+                <div class="input-group mb-3">
+                    <input name='keyword' type="text" class="form-control" placeholder="Tulis nama kendaraan..."
+                        aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-outline-secondary" type="button">Cari</button>
+                    </div>
                 </div>
-            </div>
-            {{-- <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
-                                 document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
-                </a>
-
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
-            </div> --}}
+            </form>
 
             <div class="dropdown">
                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
@@ -28,25 +20,26 @@
                     Jenis Kendaraan
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <a class="dropdown-item" href="#">Sedan</a>
-                    <a class="dropdown-item" href="#">Hatchback</a>
-                    <a class="dropdown-item" href="#">MPV</a>
-                    <a class="dropdown-item" href="#">Minivan</a>
-                    <a class="dropdown-item" href="#">Microbus</a>
-                    <a class="dropdown-item" href="#">Bus</a>
+                    <a class="dropdown-item">Sedan</a>
+                    <a class="dropdown-item">Hatchback</a>
+                    <a class="dropdown-item">MPV</a>
+                    <a class="dropdown-item">Minivan</a>
+                    <a class="dropdown-item">Microbus</a>
+                    <a class="dropdown-item">Bus</a>
                 </div>
             </div>
+
             <div class="dropdown">
                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Ketersediaan
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Ready stock</a>
-                    <a class="dropdown-item" href="#">Sebentar lagi ready</a>
+                    <a class="dropdown-item">Ready stock</a>
+                    <a class="dropdown-item">Sebentar lagi ready</a>
                 </div>
             </div>
-            <div class="dropdown">
+            {{-- <div class="dropdown">
                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Tahun
@@ -55,7 +48,7 @@
                     <a class="dropdown-item" href="#">2020 Keatas</a>
                     <a class="dropdown-item" href="#">2015-2019</a>
                 </div>
-            </div>
+            </div> --}}
         </div>
         <div class="d-flex flex-wrap gap-3 justify-content-start">
             @for ($i = 0; $i < count($data); $i++)
