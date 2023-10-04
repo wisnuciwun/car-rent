@@ -30,7 +30,6 @@ Tech Stack :
 - php artisan ui bootstrap
 - php artisan ui bootstrap --auth
 - php artisan ui vue --auth
-- npm i
 - php artisan make:controller CarsController --resource
 - php artisan make:controller RentalController --resource
 - php artisan make:model Car -m
