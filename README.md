@@ -7,10 +7,20 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Application
+## Tentang website ini
 
+Website ini adalah sebuah tempat dimana anda dapat sekaligus menyewa dan merentalkan mobil. Anda dapat registrasi dan login sesuai identitas. Serta dapat langsung menyewa mobil yang tersedia.
 
-## Commands
+Tech Stack :
+
+- Laravel 10
+- Postgresql (via elephantsql)
+- Vue Auth UI
+- Sweetalert
+- Bootstrap
+- Laravel Collective
+
+## Command CLI
 
 - clone repo
 - php composer create-project laravel/laravel car-rent
@@ -28,3 +38,8 @@
 - php artisan migrate
 - composer require realrashid/sweet-alert
 - php artisan sweetalert:publish
+
+## Bug for improvement
+
+- Belum ada fitur search
+- Tampilan detail mobil berbeda karena harus menambahkan link styling tambahan untuk datepicker

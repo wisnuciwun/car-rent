@@ -5,7 +5,7 @@
         {!! Form::open(['route' => 'cars.store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
         <div class="mb-3">
             {{ Form::label('image', 'Url Foto Mobil') }}
-            {{ Form::text('name', '', ['class' => 'form-control mb-2', 'placeholder' => 'Isi dengan link foto mobil anda']) }}
+            {{ Form::text('image', '', ['class' => 'form-control mb-2', 'placeholder' => 'Isi dengan link foto mobil anda']) }}
         </div>
         <div class="mb-3">
             {{ Form::label('name', 'Nama Mobil') }}
