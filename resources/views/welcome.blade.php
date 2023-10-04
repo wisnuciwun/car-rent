@@ -2,54 +2,32 @@
 
 @section('content')
     <div class="container" style="padding-top: 100px">
-        <div class="d-flex gap-2">
-            <form class="w-100" method="GET" action="{{ route('showBySearch') }}">
+        <form class="w-100 mb-3" method="GET" action="{{ route('showBySearch') }}">
+            <div class="d-flex gap-2">
                 {{-- @csrf --}}
-                <div class="input-group mb-3">
-                    <input name='keyword' type="text" class="form-control" placeholder="Tulis nama kendaraan..."
-                        aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <div class="input-group">
+                    <input value="{{ isset($_GET['keyword']) ? $_GET['keyword'] : '' }}" name='keyword' type="text"
+                        class="form-control" placeholder="Tulis nama kendaraan..." aria-label="Recipient's username"
+                        aria-describedby="basic-addon2">
                     <div class="input-group-append">
                         <button type="submit" class="btn btn-outline-secondary" type="button">Cari</button>
                     </div>
                 </div>
-            </form>
-
-            <div class="dropdown">
-                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    Jenis Kendaraan
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <a class="dropdown-item">Sedan</a>
-                    <a class="dropdown-item">Hatchback</a>
-                    <a class="dropdown-item">MPV</a>
-                    <a class="dropdown-item">Minivan</a>
-                    <a class="dropdown-item">Microbus</a>
-                    <a class="dropdown-item">Bus</a>
-                </div>
+                <select onchange="this.form.submit()" value="{{ isset($_GET['model']) ? $_GET['model'] : '' }}"
+                    name="model" class="form-select w-25" aria-label="Default select example">
+                    <option selected value=""> Jenis Kendaraan</option>
+                    @foreach ($car_type_list as $item)
+                        <option value="{{ $item }}">{{ $item }}</option>
+                    @endforeach
+                </select>
+                <select onchange="this.form.submit()" value="{{ isset($_GET['avail']) ? $_GET['avail'] : '' }}"
+                    name="avail" class="form-select w-25">
+                    <option selected value="">Pilih status</option>
+                    <option value="true" selected>Tersedia</option>
+                    <option value="false" selected>Sedang disewa</option>
+                </select>
             </div>
-
-            <div class="dropdown">
-                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Ketersediaan
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item">Ready stock</a>
-                    <a class="dropdown-item">Sebentar lagi ready</a>
-                </div>
-            </div>
-            {{-- <div class="dropdown">
-                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Tahun
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">2020 Keatas</a>
-                    <a class="dropdown-item" href="#">2015-2019</a>
-                </div>
-            </div> --}}
-        </div>
+        </form>
         <div class="d-flex flex-wrap gap-3 justify-content-start">
             @for ($i = 0; $i < count($data); $i++)
                 <div class="card" style="width: 25rem;">
@@ -101,4 +79,54 @@
             @endfor
         </div>
     </div>
+    {{-- <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const selectElement = document.querySelector('select[name="model"]');
+            const formElement = document.getElementById('searchForm');
+
+            console.log('first', formElement.submit)
+
+            selectElement.addEventListener('change', function() {
+                if (this.value !== '') {
+                    // Get the current URL
+                    // const currentUrl = window.location.href;
+
+                    // // Extract the existing query parameters
+                    // const url = new URL(currentUrl);
+                    // const searchParams = new URLSearchParams(url.search);
+
+                    // // Add the selected model to the query parameters
+                    // searchParams.set('model', this.value);
+
+                    // // Replace the current URL with the updated URL containing both parameters
+                    // url.search = searchParams.toString();
+                    // history.replaceState(null, '', url.toString());
+                    formElement.submit()
+                }
+            });
+        });
+    </script> --}}
 @endsection
+
+
+{{-- <div class="input-group">
+    <input value="{{ isset($_GET['keyword']) ? $_GET['keyword'] : '' }}" name='keyword' type="text"
+        class="form-control" placeholder="Tulis nama kendaraan..." aria-label="Recipient's username"
+        aria-describedby="basic-addon2">
+    <div class="input-group-append">
+        <button type="submit" class="btn btn-outline-secondary" type="button">Cari</button>
+    </div>
+</div>
+
+<select value="{{ isset($_GET['model']) ? $_GET['model'] : '' }}" name="model" class="form-select">
+    <option selected value=""> Jenis Kendaraan</option>
+    @foreach ($car_type_list as $item)
+        <option value="{{ $item }}">{{ $item }}</option>
+    @endforeach
+</select>
+
+<select value="{{ isset($_GET['keyword']) ? $_GET['keyword'] : '' }}" name="avail" class="form-select">
+    <option selected value="">Pilih status</option>
+    <option value="true" selected>Tersedia</option>
+    <option value="false" selected>Sedang disewa</option>
+</select> --}}

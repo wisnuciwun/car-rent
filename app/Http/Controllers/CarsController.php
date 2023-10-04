@@ -88,7 +88,8 @@ class CarsController extends Controller
         $data = Car::join('users', 'cars.id_owner', '=', 'users.id')
             ->select('users.name as owner', 'cars.*')
             ->where('cars.name', 'ilike', '%' . $request->input('keyword') . '%')
-            // 'column_name', 'like', '%' . $keyword . '%'
+            ->where('cars.model', 'ilike', '%' . $request->input('model') . '%')
+            ->where('cars.availability', 'ilike', '%' . $request->input('avail') . '%')
             ->get();
 
         return view('welcome', compact('data'));
