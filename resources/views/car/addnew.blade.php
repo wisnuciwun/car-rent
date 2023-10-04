@@ -22,7 +22,7 @@
         </div>
         <div class="mb-3">
             {{ Form::label('police_num', 'Plat Nomor') }}
-            {{ Form::text('police_num', '', ['class' => 'form-control mb-2', 'placeholder' => 'Berapa plat nomor mobil anda? Contoh: D1425TBW', 'maxlength' => '9']) }}
+            {{ Form::text('police_num', '', ['id' => 'police_num', 'class' => 'form-control mb-2', 'placeholder' => 'Berapa plat nomor mobil anda? Contoh: D1425TBW', 'maxlength' => '9']) }}
         </div>
         <div class="mb-3">
             {{ Form::label('fee', 'Biaya Sewa Perhari') }}
@@ -35,4 +35,14 @@
         {{ Form::submit('Simpan', ['class' => 'btn btn-primary mt-4']) }}
         {!! Form::close() !!}
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Add an event listener for input change
+            $('#police_num').on('input', function() {
+                // Convert the input value to uppercase
+                $(this).val($(this).val().toUpperCase());
+            });
+        });
+    </script>
 @endsection

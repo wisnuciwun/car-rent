@@ -67,7 +67,7 @@
                             <p class="card-text text-truncate">{{ $data[$i]->owner }}</p>
                         </div>
                         <div class="position-relative w-100">
-                            <img class="w-100"
+                            <img class="w-100" style="height: 200px; object-fit: cover"
                                 src={{ $data[$i]->image != null ? $data[$i]->image : 'https://bangkatengahkab.go.id/asset/foto_berita/no-image.jpg' }}
                                 alt="img-car">
                             @if ($data[$i]->availability)
