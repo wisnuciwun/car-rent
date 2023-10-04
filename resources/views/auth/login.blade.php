@@ -69,7 +69,7 @@
                     </div>
                 </div>
 
-                <div class="row mb-0 text-center">
+                {{-- <div class="row mb-0 text-center">
                     <div class="col-md-6 offset-md-4">
                         @if (Route::has('password.request'))
                             <a class="btn btn-link" href="{{ route('password.request') }}">
@@ -77,7 +77,7 @@
                             </a>
                         @endif
                     </div>
-                </div>
+                </div> --}}
             </form>
         </div>
     </div>

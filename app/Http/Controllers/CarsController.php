@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Car;
 use App\Models\User;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CarsController extends Controller
 {
@@ -13,9 +14,11 @@ class CarsController extends Controller
      */
     public function index()
     {
-        $data = Car::orderBy('created_at', 'asc')->paginate(6);
-        $owner = User::all();
-        return view('welcome', compact('data', 'owner'));
+        $data = Car::join('users', 'cars.id_owner', '=', 'users.id')
+            ->select('users.name as owner', 'cars.*')
+            ->get();
+
+        return view('welcome', compact('data'));
     }
 
     /**
@@ -24,6 +27,19 @@ class CarsController extends Controller
     public function create()
     {
         //
+    }
+
+    protected function validator(array $data)
+    {
+        return \Validator::make($data, [
+            'brand' => 'required',
+            'name' => 'required',
+            'model' => 'required',
+            'description' => 'required',
+            'police_num' => 'required',
+            'fee' => 'required',
+
+        ]);
     }
 
     /**
@@ -46,10 +62,13 @@ class CarsController extends Controller
         $car->model = $request->input('model');
         $car->description = $request->input('description');
         $car->police_num = $request->input('police_num');
+        $car->image = $request->input('image');
         $car->fee = $request->input('fee');
         $car->id_owner = auth()->user()->id;
         $car->availability = true;
         $car->save();
+
+        Alert::success('Yeay!', 'Anda berhasil menambahkan mobil');
 
         return redirect('/profile');
     }
@@ -85,6 +104,16 @@ class CarsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = Car::find($id);
+
+        if (\Auth::user()->id !== $data->id_owner) {
+            // return redirect('/profi')->with('error', 'Unauthorized Page');
+        } else {
+            $data->delete();
+
+            Alert::success('Yeay!', 'Anda berhasil menghapus data mobil');
+
+            return redirect('/profile');
+        }
     }
 }

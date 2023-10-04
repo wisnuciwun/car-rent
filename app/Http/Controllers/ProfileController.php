@@ -32,7 +32,6 @@ class ProfileController extends Controller
         $user_id = auth()->user()->id;
         $data = User::find($user_id);
         $user_cars = Car::where('id_owner', $user_id)->get();
-        // $car_data = Car::all();
 
         $rented_car = Car::join('rents', 'cars.id', '=', 'rents.id_car')
             ->select('rents.id', '*', \DB::raw("
@@ -41,6 +40,7 @@ class ProfileController extends Controller
             else (rents.rental_deadline - rents.rental_start)
             end as duration
             "))
+            ->where('rents.id_tenant', $user_id)
             ->get();
 
         return view('pages.profile')

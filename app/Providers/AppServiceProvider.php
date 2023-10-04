@@ -23,7 +23,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer('*', function ($view) {
             // $car_type_list = 'This is a universal variable';
             $car_type_list = array('Sedan', 'Hatchback', 'MPV', 'Minivan', 'Microbus', 'Bus');
-            $car_type_list_dropdown = (object) $car_type_list;
+            $car_type_list_dropdown = array('Sedan' => 'Sedan', 'Hatchback' => 'Hatchback', 'MPV' => 'MPV', 'Minivan' => 'Minivan', 'Microbus' => 'Microbus', 'Bus' => 'Bus');
 
             $view
                 ->with('car_type_list', $car_type_list)

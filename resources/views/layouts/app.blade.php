@@ -2,23 +2,22 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
+
+    <!-- ... -->
+
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="https://i.ibb.co/CnXWcHM/car-logo.png">
-    <!-- change the tab title -->
     <title>Rentalpedia</title>
-    <!-- Fonts -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-    <!-- Styles -->
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
@@ -37,14 +36,9 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
                     </ul>
-
-                    <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">Masuk / Buat Akun</a>
@@ -57,12 +51,18 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/profile">
+                                    <a class="dropdown-item d-flex align-items-center gap-2 mb-2" href="/profile">
+                                        <span class="material-symbols-outlined">
+                                            person
+                                        </span>
                                         Profile
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                    <a class="dropdown-item d-flex align-items-center gap-2" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
+                                        <span class="material-symbols-outlined">
+                                            logout
+                                        </span>
                                         {{ __('Logout') }}
                                     </a>
 
@@ -76,8 +76,11 @@
                 </div>
             </div>
         </nav>
-
-        <main>
+        <?php
+        setlocale(LC_MONETARY, 'id_ID');
+        ?>
+        @include('sweetalert::alert')
+        <main style="overflow-y: auto;" class="pb-5">
             @yield('content')
         </main>
     </div>

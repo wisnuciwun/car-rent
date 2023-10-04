@@ -57,18 +57,18 @@
                 </div>
             </div>
         </div>
-        <div>
+        <div class="d-flex flex-wrap gap-3 justify-content-center">
             @for ($i = 0; $i < count($data); $i++)
                 <div class="card" style="width: 25rem;">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $data[$i]->name }}</h5>
+                        <h5 class="card-title text-truncate">{{ $data[$i]->name }}</h5>
                         <div class="d-flex align-items-center gap-2 mb-1">
                             <img src="https://i.ibb.co/SwhPvJC/avatar.png" style="width: 15px; height: 15px" alt="">
-                            <p class="card-text">{{ $owner[$i]->name }}</p>
+                            <p class="card-text text-truncate">{{ $data[$i]->owner }}</p>
                         </div>
                         <div class="position-relative w-100">
                             <img class="w-100"
-                                src="https://img.philtoyota.com/2023/03/21/059B8x1O/avanzas-engine-and-fuel-consumption-c905.jpg"
+                                src={{ $data[$i]->image != null ? $data[$i]->image : 'https://bangkatengahkab.go.id/asset/foto_berita/no-image.jpg' }}
                                 alt="img-car">
                             @if ($data[$i]->availability)
                                 <div style="bottom: 8px; right: 8px" class="badge badge-pill bg-success position-absolute">
@@ -83,7 +83,7 @@
                         <div class="row mt-2 mb-2">
                             <div class="col-md-5">Merek</div>
                             <div class="col-md-1">:</div>
-                            <div class="col-md-5">{{ $data[$i]->brand }}</div>
+                            <div class="col-md-5 text-truncate">{{ $data[$i]->brand }}</div>
                             <div class="col-md-5">Jenis</div>
                             <div class="col-md-1">:</div>
                             <div class="col-md-5">{{ $data[$i]->model }}</div>
@@ -94,10 +94,10 @@
                             <div class="col-md-12"></div>
                             <div class="col-md-5">Harga sewa</div>
                             <div class="col-md-1">:</div>
-                            <div class="col-md-5">{{ $data[$i]->fee }}</div>
+                            <div class="col-md-5">Rp. {{ number_format($data[$i]->fee) }}</div>
                             <div class="col-md-12"></div>
                             <div class="col-md-5 mt-3">Deskripsi :</div>
-                            <div class="col-md-12">
+                            <div class="col-md-12 text-truncate">
                                 {{ $data[$i]->description }}
                             </div>
                         </div>
