@@ -58,6 +58,9 @@ class RentalController extends Controller
         if ($request->input('rental_deadline') == '' && $request->input('rental_start') == '') {
             Alert::warning('Oops!', 'Anda belum mengisi tanggal peminjaman');
             return redirect("/detail" . "/" . $update_car_avail->brand . "-" . $update_car_avail->name . "-" . $update_car_avail->id);
+        } elseif (\Auth::guest()) {
+            Alert::error('Oops!', 'Silahkan login terlebih dahulu');
+            return redirect("/detail" . "/" . $update_car_avail->brand . "-" . $update_car_avail->name . "-" . $update_car_avail->id);
         } else if ($update_car_avail->id_owner == auth()->user()->id) {
             Alert::error('Oops!', 'Anda tidak diperbolehkan untuk meminjam mobil sendiri');
             return redirect("/detail" . "/" . $update_car_avail->brand . "-" . $update_car_avail->name . "-" . $update_car_avail->id);
