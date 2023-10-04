@@ -57,7 +57,7 @@
                 </div>
             </div>
         </div>
-        <div class="d-flex flex-wrap gap-3 justify-content-center">
+        <div class="d-flex flex-wrap gap-3 justify-content-start">
             @for ($i = 0; $i < count($data); $i++)
                 <div class="card" style="width: 25rem;">
                     <div class="card-body">
