@@ -40,5 +40,4 @@ Tech Stack :
 
 ## Bug for improvement
 
-- Belum ada fitur search
 - Tampilan detail mobil berbeda karena harus menambahkan link styling tambahan untuk datepicker
